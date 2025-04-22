@@ -8,7 +8,7 @@ module "subnets" {
   vpc_id                = module.vpc.vpc_id
   public_subnet_cidrs   = ["10.0.1.0/24", "10.0.2.0/24"]
   private_subnet_cidrs  = ["10.0.101.0/24", "10.0.102.0/24"]
-  azs                   = ["us-east-1a", "us-east-1b"]
+  azs                   = ["eu-central-1a", "eu-central-1b"]
 }
 
 module "igw" {
@@ -98,7 +98,7 @@ module "rds" {
 
 resource "random_password" "db_password" {
   length  = 20
-  special = true
+  special = false
 }
 
 module "monitoring" {
@@ -106,7 +106,7 @@ module "monitoring" {
   asg_name            = module.asg.asg_name
   alb_name            = module.alb.alb_name
   rds_identifier      = module.rds.db_instance_id
-  log_bucket_name     = "my-alb-logs-bucket"
+  log_bucket_name     = "my-alb-logs-bucket-5m5d"
   notification_topic  = module.sns.sns_topic_arn
   scale_out_policy_arn = module.asg.scale_out_policy_arn   
   scale_in_policy_arn  = module.asg.scale_in_policy_arn

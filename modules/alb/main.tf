@@ -7,13 +7,15 @@ resource "aws_lb" "alb" {
   access_logs {
     bucket  = var.log_bucket
     enabled = true
-    prefix  = "alb-logs"
+    prefix  = "alb-logs/${data.aws_caller_identity.current.account_id}"
   }
 
   tags = {
     Name = "wordpress-alb"
   }
 }
+
+data "aws_caller_identity" "current" {}
 
 resource "aws_lb_target_group" "tg" {
   name        = "wordpress-tg"
