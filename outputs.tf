@@ -7,4 +7,7 @@ output "generated_db_password" {
   sensitive = true
 }
 
+output "db_endpoint" {
+  value = module.rds.address
+}
 
