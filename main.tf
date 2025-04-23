@@ -78,7 +78,7 @@ module "asg" {
   launch_template_version = "$Latest"
   target_group_arn     = module.alb.target_group_arn
   desired_capacity     = 2
-  min_size             = 1
+  min_size             = 2
   max_size             = 4
 }
 
